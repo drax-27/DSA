@@ -1,0 +1,85 @@
+Q1)Good or Bad string
+class Solution {
+  public:
+    int isGoodorBad(string s) {
+        int len=s.size();
+        int vcount=0; //vowel counter
+        int ccount=0; //consonant counter
+        for(int i=0 ;i<len;i++){
+            if(s[i]=='a' || s[i]=='e' || s[i]=='i' || s[i]=='o' || s[i]=='u') {
+                vcount++; //if vowel increment
+                ccount=0; //makes sure to reset consonant counter to 0 if it encounters a new vowel , since the qs requires it to bo continous 
+                
+                if (vcount>5) return 0;
+            }
+            else if(s[i]=='?') {
+                vcount++;
+                ccount++;
+                // the '?' could be either v/c hence increment both
+                if(vcount>5 || ccount>3) return 0; //check qs condition
+            }
+            else {
+                vcount=0;
+                ccount++;
+                if(ccount>3) return 0;
+            };
+        }
+        return 1;
+    }
+};
+
+
+
+Q2)2570. Merge Two 2D Arrays by Summing Values
+
+//tldr -> two pointers 
+
+class Solution {
+public:
+    vector<vector<int>> mergeArrays(vector<vector<int>>& nums1, vector<vector<int>>& nums2) {
+
+        vector<vector<int>> ans;
+
+        int i=0; //pointer to nums1 each sub array
+        int j=0; //pointer to nums2 each sub array
+
+        int len1=nums1.size();
+        int len2=nums2.size();
+
+        while(i<len1 && j<len2){
+            if(nums1[i][0]==nums2[j][0]) { //if the id's are equal add the id and sum of values to ans array
+                vector<int> temp;
+                temp.push_back(nums1[i][0]);
+                temp.push_back(nums2[j][1]+nums1[i][1]);
+                ans.push_back(temp);
+                i++;
+                j++;
+            }
+
+            else if(nums1[i][0]<nums2[j][0]){ //if 1 id is smaller , add that one to the ans
+                ans.push_back(nums1[i]);
+                i++;
+            }
+
+            
+
+            else{
+                ans.push_back(nums2[j]);
+                j++;
+            }
+
+            
+        }
+        //next 2 while loops are when the above conditions fails , i.e , either 'i' is out of bounds or 'j' is out of bounds , so add the remaining elements to the ans
+        while(i<len1){
+                ans.push_back(nums1[i]);
+                i++;
+            }
+
+            while(j<len2){
+                ans.push_back(nums2[j]);
+                j++;
+            }
+        return ans;
+    }
+};
