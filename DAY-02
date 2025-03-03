@@ -28,7 +28,7 @@ class Solution {
     }
 };
 
-
+// TC - O(n)
 
 Q2)2570. Merge Two 2D Arrays by Summing Values
 
@@ -83,3 +83,4 @@ public:
         return ans;
     }
 };
+//TC - O(m+n)
