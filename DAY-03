@@ -1,0 +1,29 @@
+Q1) LC - qs 832 
+
+class Solution {
+public:
+    vector<vector<int>> flipAndInvertImage(vector<vector<int>>& image) {
+        int row=image.size();
+        int col=image[0].size();
+        int temp; //used in swapping 
+
+        for(int i=0 ; i<row ;i++){
+            for(int j=0 ; j<col/2 ; j++){
+                temp=image[i][j];
+                image[i][j]=image[i][col-j-1]; //here it reverses each vector 
+                image[i][col-j-1]=temp;
+            }
+        }
+
+        for(int i=0 ; i<row ;i++){
+            for(int j=0 ; j<col ; j++){
+                if(image[i][j]==1){ // if 1 convert it to 0 
+                    image[i][j]-=1;
+                }
+                else image[i][j]+=1; //if 0 convert it to 1 
+            }
+        }
+
+        return image;
+    }
+};
