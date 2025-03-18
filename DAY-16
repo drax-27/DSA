@@ -1,0 +1,31 @@
+Q1) search 2d-matrix
+
+code:
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int r=matrix.size();
+        int row=0;
+        for(int i=0;i<r;i++){
+            if(target>=matrix[i][0]){
+                row=i; //to find out which row to search for 
+            }
+            else
+            break;
+        }
+
+        int low=0,high=matrix[row].size()-1;
+        while(low<=high){ //apply binary search in the row
+            int mid=(low+high)/2;
+            if(matrix[row][mid]==target) return true;
+
+            else if(matrix[row][mid]>target) high=mid-1;
+
+            else low=mid+1;
+        }
+        return false;
+    }
+};
+
+
+tc = O(n*log(m)) n=row m=column
