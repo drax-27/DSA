@@ -27,3 +27,22 @@ public:
         return image;
     }
 };
+
+
+q2) lc 1182 
+
+class Solution {
+public:
+    int numEquivDominoPairs(vector<vector<int>>& dominos) {
+    unordered_map<int, int> freq;
+    int count = 0;
+    
+    for (auto& d : dominos) {
+        int key = min(d[0], d[1]) * 10 + max(d[0], d[1]); // Unique key
+        count += freq[key];  // count how many such dominoes have appeared before
+        freq[key]++;  // Increment frequency 
+    }
+    
+    return count;
+    }
+};
