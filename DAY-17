@@ -1,0 +1,30 @@
+Q1) Isomorphic string
+
+code 
+
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        unordered_map<char,char> map;
+        unordered_map<char,char> map1;
+        string scopy=s;
+        string tcopy=t;
+        int len=s.size();
+        for(int i=0 ; i<len ;i++) { 
+            map[s[i]]=t[i];
+            map1[t[i]]=s[i];
+        }
+
+        for(int i=0 ; i<len ;i++) {
+            s[i]=map[s[i]];
+            t[i]=map1[t[i]];
+        }
+        if(s.compare(tcopy)!=0 || t.compare(scopy)!=0){
+            return false;
+        }
+        else
+        return true;
+
+        
+    }
+};
